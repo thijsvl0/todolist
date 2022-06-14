@@ -1,5 +1,5 @@
 import type { ButtonHTMLAttributes, DetailedHTMLProps, FC } from 'react';
-import { classNames } from '../../utils';
+import { classNames } from '@utils';
 
 const colorClassname = {
   info: 'text-gray-500 hover:bg-gray-200 focus:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50',

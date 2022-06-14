@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import { signIn } from 'next-auth/react';
-import Button from '../../components/common/Button';
-import Title from '../../components/common/Title';
+import Button from '@components/common/Button';
+import Title from '@components/common/Title';
 
 const Login: NextPage = () => {
   return (
