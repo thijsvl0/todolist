@@ -4,5 +4,5 @@
 
 html,
 body {
-  @apply h-screen;
+  @apply h-screen bg-gray-100 text-black/90;
 }

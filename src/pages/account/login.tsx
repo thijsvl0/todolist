@@ -7,10 +7,10 @@ const Login: NextPage = () => {
   return (
     <>
       <Title>Login</Title>
-      <div className="w-full divide-y divide-gray-200 rounded-lg bg-white shadow">
-        <div className="p-5">
-          <div className="grid grid-cols-3 gap-1">
-            <Button color="secondary" onClick={() => signIn('github')}>
+      <div className="w-full divide-y divide-gray-200 rounded-xl bg-white">
+        <div className="flex justify-center p-5">
+          <div className="max-w-xs flex-1">
+            <Button color="info" onClick={() => signIn('github')}>
               Github
             </Button>
           </div>

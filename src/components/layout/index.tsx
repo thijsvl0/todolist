@@ -6,8 +6,8 @@ interface LayoutProps {
 
 const Layout: FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="flex min-h-screen flex-col justify-center bg-gray-100 sm:py-12">
-      <div className="xs:p-0 mx-auto p-10 md:w-full md:max-w-md">{children}</div>
+    <div className="mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-xl">{children}</div>
     </div>
   );
 };

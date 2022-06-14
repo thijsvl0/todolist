@@ -5,6 +5,6 @@ interface TitleProps {
 }
 
 const Title: FC<TitleProps> = ({ children }) => {
-  return <h1 className="mb-5 text-center text-2xl font-bold text-gray-900">{children}</h1>;
+  return <h1 className="mb-4 text-left text-xl font-semibold">{children}</h1>;
 };
 export default Title;
