@@ -1,4 +1,3 @@
-import Button from '@components/common/Button';
 import Card from '@components/common/Card';
 import { CheckCircleIcon as CheckCircleIconSolid } from '@heroicons/react/solid';
 import { CheckCircleIcon as CheckCircleIconOutline, TrashIcon } from '@heroicons/react/outline';
@@ -30,12 +29,13 @@ const TodoItem: FC<TodoItemProps> = ({ todo }) => {
         {todo.done && <div className="text-sm text-gray-500">Completed - {DateTime.fromJSDate(todo.updatedAt).toFormat('DDDD T')}</div>}
       </div>
       <div className="flex">
-        <Button onClick={() => updateDone({ id: todo.id, done: !todo.done })}>
-          {todo.done ? <CheckCircleIconSolid className="w-8 stroke-[1.5] text-gray-500 transition duration-200 group-hover:text-gray-900" /> : <CheckCircleIconOutline className="w-8 stroke-[1.5] text-gray-500 transition duration-200 group-hover:text-gray-900" />}
-        </Button>
-        <Button onClick={() => deleteTodo({ id: todo.id })}>
-          <TrashIcon className="w-8 stroke-[1.5] text-gray-500 transition duration-200 group-hover:text-gray-900" />
-        </Button>
+        {todo.done ? (
+          <CheckCircleIconSolid onClick={() => updateDone({ id: todo.id, done: !todo.done })} className="w-8 stroke-[1.5] text-gray-500 transition duration-200 hover:cursor-pointer hover:text-gray-900" />
+        ) : (
+          <CheckCircleIconOutline onClick={() => updateDone({ id: todo.id, done: !todo.done })} className="w-8 stroke-[1.5] text-gray-500 transition duration-200 hover:cursor-pointer hover:text-gray-900" />
+        )}
+
+        <TrashIcon onClick={() => deleteTodo({ id: todo.id })} className="w-8 stroke-[1.5] text-gray-500 transition duration-200 hover:cursor-pointer hover:text-gray-900" />
       </div>
     </Card>
   );

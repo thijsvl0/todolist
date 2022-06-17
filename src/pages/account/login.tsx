@@ -2,10 +2,14 @@ import type { GetServerSideProps, NextPage } from 'next';
 import { getSession, signIn } from 'next-auth/react';
 import Button from '@components/common/Button';
 import Title from '@components/common/Title';
+import Head from 'next/head';
 
 const Login: NextPage = () => {
   return (
     <>
+      <Head>
+        <title>Login - Todolist</title>
+      </Head>
       <Title>Login</Title>
       <div className="flex justify-center">
         <div className="col-start-2">

@@ -19,6 +19,8 @@ COPY . .
 # Uncomment the following line in case you want to disable telemetry during the build.
 ENV NEXT_TELEMETRY_DISABLED 1
 
+RUN npx prisma generate
+
 # If using npm comment out above and use below instead
 RUN npm run build
 
@@ -43,10 +45,13 @@ COPY --from=builder /app/package.json ./package.json
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
+COPY --chown=nextjs:nodejs prisma ./prisma/
+COPY --chown=nextjs:nodejs docker-bootstrap-app.sh ./
+
 USER nextjs
 
 EXPOSE 3000
 
 ENV PORT 3000
 
-CMD ["node", "server.js"]
+CMD ["./docker-bootstrap-app.sh"]

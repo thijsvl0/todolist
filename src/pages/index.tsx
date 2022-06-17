@@ -4,6 +4,7 @@ import { PlusIcon } from '@heroicons/react/outline';
 import { trpc } from '@lib/trpc';
 import type { GetServerSideProps, NextPage } from 'next';
 import { getSession } from 'next-auth/react';
+import Head from 'next/head';
 import { KeyboardEvent, useRef } from 'react';
 
 const Home: NextPage = () => {
@@ -33,6 +34,9 @@ const Home: NextPage = () => {
 
   return (
     <>
+      <Head>
+        <title>Home - Todolist</title>
+      </Head>
       <div className="mb-4 flex justify-between gap-x-2">
         <input type="text" className="col-span-5 block w-full rounded-xl border-2 border-gray-100 focus:border-primary-200 focus:ring-primary-200 sm:text-sm" placeholder="Todo" onKeyDown={onKeyDown} ref={inputRef} />
         <div>
