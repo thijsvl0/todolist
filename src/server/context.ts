@@ -8,12 +8,13 @@ export async function createContext(ctxOptions?: CreateNextContextOptions) {
   const res = ctxOptions?.res;
 
   const session = await getSession({ req });
+  const user = session?.user?.email ? await prisma.user.findFirst({ where: { email: session.user.email } }) : null;
 
   return {
     req,
     res,
     prisma,
-    session,
+    user,
   };
 }
 
