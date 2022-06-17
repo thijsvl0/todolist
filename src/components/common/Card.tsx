@@ -7,7 +7,7 @@ interface CardProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HT
 
 const Card: FC<CardProps> = ({ children, className, ...props }) => {
   return (
-    <div className={classNames('w-full rounded-3xl bg-white', className ? className : '')} {...props}>
+    <div className={classNames('w-full rounded-2xl bg-white', className ? className : '')} {...props}>
       {children}
     </div>
   );

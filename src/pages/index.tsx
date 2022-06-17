@@ -1,28 +1,19 @@
 import Button from '@components/common/Button';
 import Card from '@components/common/Card';
+import { PlusIcon } from '@heroicons/react/outline';
 import type { NextPage } from 'next';
-import { signOut, useSession } from 'next-auth/react';
-import Image from 'next/image';
-import { LogoutIcon } from '@heroicons/react/outline';
 
 const Home: NextPage = () => {
-  const { data } = useSession();
-
   return (
     <>
-      <div className="flex h-14 gap-x-2">
-        <div className="relative aspect-square h-full overflow-hidden rounded-full">{data?.user?.image && <Image src={data?.user?.image} alt="pfp" layout="fill" objectFit="cover" loading="eager" />}</div>
-        <div className="grid h-full flex-1 grid-rows-2 py-1">
-          <h4 className="text-base font-semibold text-gray-900">{data?.user?.name}</h4>
-          <span className="text-base text-gray-500">{data?.user?.email}</span>
-        </div>
-        <div className="flex items-center justify-center">
-          <Button onClick={() => signOut()}>
-            <LogoutIcon className="w-8 text-gray-500 transition duration-200 group-hover:text-gray-900" />
+      <div className="flex justify-between gap-x-2">
+        <input type="text" className="col-span-5 block w-full rounded-xl border-2 border-gray-100 focus:border-primary-200 focus:ring-primary-200 sm:text-sm" placeholder="Todo" />
+        <div>
+          <Button>
+            <PlusIcon className="w-8 stroke-[1.5] text-gray-500 transition duration-200 group-hover:text-gray-900" />
           </Button>
         </div>
       </div>
-      <Card></Card>
     </>
   );
 };
