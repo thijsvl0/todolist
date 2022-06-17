@@ -1,9 +1,18 @@
 import Button from '@components/common/Button';
-import Card from '@components/common/Card';
 import { PlusIcon } from '@heroicons/react/outline';
-import type { NextPage } from 'next';
+import { trpc } from '@lib/trpc';
+import type { GetServerSideProps, NextPage } from 'next';
+import { getSession } from 'next-auth/react';
+import { useEffect } from 'react';
 
 const Home: NextPage = () => {
+  const { data, isLoading } = trpc.useQuery(['todos.get-all']);
+
+  useEffect(() => {
+    console.log('data', data);
+  }, [data]);
+
+  if (isLoading) return <>Loading...</>;
   return (
     <>
       <div className="flex justify-between gap-x-2">
@@ -16,6 +25,21 @@ const Home: NextPage = () => {
       </div>
     </>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession(context);
+
+  if (!session) {
+    return {
+      redirect: { destination: '/account/login' },
+      props: {},
+    };
+  }
+
+  return {
+    props: {},
+  };
 };
 
 export default Home;
