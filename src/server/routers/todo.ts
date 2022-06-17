@@ -10,7 +10,7 @@ export const todoRouter = createRouter()
   })
   .query('get-all', {
     async resolve({ ctx }) {
-      return await ctx.prisma.todo.findMany({ where: { user: { id: ctx.user?.id } } });
+      return await ctx.prisma.todo.findMany({ where: { user: { id: ctx.user?.id } }, orderBy: { createdAt: 'desc' } });
     },
   })
   .mutation('create', {
@@ -21,6 +21,15 @@ export const todoRouter = createRouter()
           name: input.name,
           user: { connect: { id: ctx.user?.id } },
         },
+      });
+    },
+  })
+  .mutation('set-done', {
+    input: z.object({ id: z.string(), done: z.boolean() }),
+    async resolve({ ctx, input }) {
+      return await ctx.prisma.todo.update({
+        where: { id: input.id },
+        data: { done: input.done },
       });
     },
   })
