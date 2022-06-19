@@ -5,6 +5,7 @@ import { trpc } from '@lib/trpc';
 import { Todo } from '@prisma/client';
 import type { FC } from 'react';
 import { DateTime } from 'luxon';
+import { classNames } from '@utils';
 
 interface TodoItemProps {
   todo: Todo;
@@ -13,11 +14,11 @@ interface TodoItemProps {
 const TodoItem: FC<TodoItemProps> = ({ todo }) => {
   const client = trpc.useContext();
 
-  const { mutate: deleteTodo } = trpc.useMutation(['todos.delete'], {
+  const { mutate: deleteTodo, isLoading: isLoadingDelete } = trpc.useMutation(['todos.delete'], {
     onSuccess: () => client.invalidateQueries(['todos.get-all']),
   });
 
-  const { mutate: updateDone } = trpc.useMutation(['todos.set-done'], {
+  const { mutate: updateDone, isLoading: isLoadingUpdate } = trpc.useMutation(['todos.set-done'], {
     onSuccess: () => client.invalidateQueries(['todos.get-all']),
   });
 
@@ -30,12 +31,12 @@ const TodoItem: FC<TodoItemProps> = ({ todo }) => {
       </div>
       <div className="flex">
         {todo.done ? (
-          <CheckCircleIconSolid onClick={() => updateDone({ id: todo.id, done: !todo.done })} className="w-8 stroke-[1.5] text-gray-500 transition duration-200 hover:cursor-pointer hover:text-gray-900" />
+          <CheckCircleIconSolid onClick={() => updateDone({ id: todo.id, done: !todo.done })} className={classNames('w-8 stroke-[1.5]  transition duration-200 ', isLoadingUpdate ? 'text-gray-400' : 'text-gray-500 hover:cursor-pointer hover:text-gray-900')} />
         ) : (
-          <CheckCircleIconOutline onClick={() => updateDone({ id: todo.id, done: !todo.done })} className="w-8 stroke-[1.5] text-gray-500 transition duration-200 hover:cursor-pointer hover:text-gray-900" />
+          <CheckCircleIconOutline onClick={() => updateDone({ id: todo.id, done: !todo.done })} className={classNames('w-8 stroke-[1.5]  transition duration-200 ', isLoadingUpdate ? 'text-gray-400' : 'text-gray-500 hover:cursor-pointer hover:text-gray-900')} />
         )}
 
-        <TrashIcon onClick={() => deleteTodo({ id: todo.id })} className="w-8 stroke-[1.5] text-gray-500 transition duration-200 hover:cursor-pointer hover:text-gray-900" />
+        <TrashIcon onClick={() => deleteTodo({ id: todo.id })} className={classNames('w-8 stroke-[1.5]  transition duration-200 ', isLoadingDelete ? 'text-gray-400' : 'text-gray-500 hover:cursor-pointer hover:text-gray-900')} />
       </div>
     </Card>
   );
