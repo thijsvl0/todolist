@@ -3,6 +3,7 @@ import { getSession, signIn } from 'next-auth/react';
 import Button from '@components/common/Button';
 import Title from '@components/common/Title';
 import Head from 'next/head';
+import { GithubLogo } from 'phosphor-react';
 
 const Login: NextPage = () => {
   return (
@@ -11,9 +12,12 @@ const Login: NextPage = () => {
         <title>Login - Todolist</title>
       </Head>
       <Title>Login</Title>
+      <div>Sign in with</div>
       <div className="flex justify-center">
-        <div className="col-start-2">
-          <Button onClick={() => signIn('github')}>sign in with Github</Button>
+        <div>
+          <Button onClick={() => signIn('github')}>
+            Github <GithubLogo size={32} className="inline-block text-gray-800 transition duration-200 group-hover:text-gray-900" />
+          </Button>
         </div>
       </div>
     </>

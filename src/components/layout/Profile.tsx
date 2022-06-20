@@ -1,7 +1,7 @@
 import Card from '@components/common/Card';
-import { LogoutIcon } from '@heroicons/react/outline';
 import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
+import { SignOut } from 'phosphor-react';
 import type { FC } from 'react';
 
 interface ProfileProps {}
@@ -18,7 +18,7 @@ const Profile: FC<ProfileProps> = ({}) => {
           <span className="text-base text-gray-500">{session?.user?.email}</span>
         </div>
         <div className="flex items-center justify-center">
-          <LogoutIcon onClick={() => signOut()} className="w-8 stroke-[1.5] text-gray-500 transition duration-200 hover:cursor-pointer hover:text-gray-900" />
+          <SignOut onClick={() => signOut()} size={32} className="text-gray-500 transition duration-200 hover:cursor-pointer hover:text-gray-900" />
         </div>
       </div>
     </Card>

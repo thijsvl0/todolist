@@ -1,10 +1,10 @@
 import Button from '@components/common/Button';
 import TodoItem from '@components/home/TodoItem';
-import { PlusIcon } from '@heroicons/react/outline';
 import { trpc } from '@lib/trpc';
 import type { GetServerSideProps, NextPage } from 'next';
 import { getSession } from 'next-auth/react';
 import Head from 'next/head';
+import { Plus } from 'phosphor-react';
 import { KeyboardEvent, useRef } from 'react';
 
 const Home: NextPage = () => {
@@ -38,10 +38,10 @@ const Home: NextPage = () => {
         <title>Home - Todolist</title>
       </Head>
       <div className="mb-4 flex justify-between gap-x-2">
-        <input type="text" className="col-span-5 block w-full rounded-xl border-2 border-gray-100 focus:border-primary-200 focus:ring-primary-200 sm:text-sm" placeholder="Todo" onKeyDown={onKeyDown} ref={inputRef} />
+        <input type="text" className="focus:border-primary-200 focus:ring-primary-200 col-span-5 block w-full rounded-xl border-2 border-gray-100 sm:text-sm" placeholder="Todo" onKeyDown={onKeyDown} ref={inputRef} />
         <div>
           <Button onClick={() => createTodoHandler()}>
-            <PlusIcon className="w-8 stroke-[1.5] text-gray-500 transition duration-200 group-hover:text-gray-900" />
+            <Plus size={32} className="text-gray-500 transition duration-200 group-hover:text-gray-900" />
           </Button>
         </div>
       </div>
