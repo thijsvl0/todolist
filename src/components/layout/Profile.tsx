@@ -10,7 +10,7 @@ const Profile: FC<ProfileProps> = ({}) => {
   const { data: session } = useSession();
 
   return (
-    <Card className="mb-4 bg-gray-100 py-2 px-4">
+    <Card className="mb-4 bg-gray-100 py-2 px-4 shadow">
       <div className="flex h-14 gap-x-2">
         <div className="relative aspect-square h-full overflow-hidden rounded-full">{session?.user?.image && <Image src={session?.user?.image} alt="pfp" layout="fill" objectFit="cover" loading="eager" />}</div>
         <div className="grid h-full flex-1 grid-rows-2 py-1">
@@ -18,7 +18,7 @@ const Profile: FC<ProfileProps> = ({}) => {
           <span className="text-base text-gray-500">{session?.user?.email}</span>
         </div>
         <div className="flex items-center justify-center">
-          <SignOut onClick={() => signOut()} size={32} className="text-gray-500 transition duration-200 hover:cursor-pointer hover:text-gray-900" />
+          <SignOut onClick={() => signOut()} weight={'light'} size={32} className="text-gray-500 transition duration-200 hover:cursor-pointer hover:text-gray-900" />
         </div>
       </div>
     </Card>

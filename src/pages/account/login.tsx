@@ -16,7 +16,7 @@ const Login: NextPage = () => {
       <div className="flex justify-center">
         <div>
           <Button onClick={() => signIn('github')}>
-            Github <GithubLogo size={32} className="inline-block text-gray-800 transition duration-200 group-hover:text-gray-900" />
+            <GithubLogo size={32} className="inline-block text-gray-800 transition duration-200 group-hover:text-gray-900" /> Github
           </Button>
         </div>
       </div>

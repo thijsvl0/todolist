@@ -22,15 +22,20 @@ const TodoItem: FC<TodoItemProps> = ({ todo }) => {
   });
 
   return (
-    <Card className="flex items-center justify-between bg-gray-100 py-2 px-4">
+    <Card className="flex items-center justify-between bg-gray-100 py-2 px-4 shadow">
       <div>
         <div>{todo.name}</div>
         <div className="text-sm text-gray-500">Created - {DateTime.fromJSDate(todo.createdAt).toFormat('DDDD T')}</div>
         {todo.done && <div className="text-sm text-gray-500">Completed - {DateTime.fromJSDate(todo.updatedAt).toFormat('DDDD T')}</div>}
       </div>
       <div className="flex">
-        <CheckCircle onClick={() => updateDone({ id: todo.id, done: !todo.done })} size={32} weight={todo.done ? 'fill' : 'regular'} className={classNames('transition duration-200 ', isLoadingUpdate ? 'text-gray-400' : 'text-gray-500 hover:cursor-pointer hover:text-gray-900')} />
-        <Trash onClick={() => deleteTodo({ id: todo.id })} size={32} className={classNames('transition duration-200 ', isLoadingDelete ? 'text-gray-400' : 'text-gray-500 hover:cursor-pointer hover:text-gray-900')} />
+        <CheckCircle
+          onClick={(e) => (isLoadingUpdate ? e.preventDefault() : updateDone({ id: todo.id, done: !todo.done }))}
+          size={32}
+          weight={todo.done ? 'fill' : 'light'}
+          className={classNames('transition duration-200 ', isLoadingUpdate ? 'text-gray-400' : 'text-gray-500 hover:cursor-pointer hover:text-gray-900')}
+        />
+        <Trash onClick={(e) => (isLoadingDelete ? e.preventDefault() : deleteTodo({ id: todo.id }))} weight={'light'} size={32} className={classNames('transition duration-200 ', isLoadingDelete ? 'text-gray-400' : 'text-gray-500 hover:cursor-pointer hover:text-gray-900')} />
       </div>
     </Card>
   );
