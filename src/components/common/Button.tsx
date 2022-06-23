@@ -2,7 +2,7 @@ import type { ButtonHTMLAttributes, DetailedHTMLProps, FC } from 'react';
 import { classNames } from '@utils';
 
 const colorClassname = {
-  info: 'text-gray-800 hover:text-black hover:bg-gray-200 hover:shadow focus:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50',
+  info: 'text-gray-800 hover:text-black hover:bg-gray-200 hover:shadow-sm focus:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50',
 };
 
 interface ButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
